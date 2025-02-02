@@ -3,11 +3,13 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 public class ViewProductsController {
 
+    public ComboBox cmbSize;
     @FXML
     private Button btnGents;
 
@@ -58,4 +60,6 @@ public class ViewProductsController {
 
     }
 
+    public void cmbLoadSizesOnAction(ActionEvent actionEvent) {
+    }
 }
