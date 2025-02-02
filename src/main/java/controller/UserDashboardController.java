@@ -66,13 +66,27 @@ public class UserDashboardController {
     }
 
     @FXML
-    void btnOrderReturnsFormOnAction(ActionEvent event) {
+    void btnOrderReturnsFormOnAction(ActionEvent event) throws IOException {
+        URL resource = this.getClass().getResource("/view/order_returns_form.fxml");
 
+        assert resource!=null;
+
+        Parent load = FXMLLoader.load(resource);
+
+        ancPaneLoadContainer.getChildren().clear();
+        ancPaneLoadContainer.getChildren().add(load);
     }
 
     @FXML
-    void btnSupplierFormOnAction(ActionEvent event) {
+    void btnSupplierFormOnAction(ActionEvent event) throws IOException {
+        URL resource = this.getClass().getResource("/view/supplier_form.fxml");
 
+        assert resource!=null;
+
+        Parent load = FXMLLoader.load(resource);
+
+        ancPaneLoadContainer.getChildren().clear();
+        ancPaneLoadContainer.getChildren().add(load);
     }
 
     @FXML
