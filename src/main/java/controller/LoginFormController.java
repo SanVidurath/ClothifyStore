@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.stage.Stage;
@@ -35,9 +36,13 @@ public class LoginFormController {
     }
 
     @FXML
-    void hyperRegisterHereOnAction(ActionEvent event) throws IOException {
+    void hyperRegisterHereOnAction(ActionEvent event){
         Stage stage = new Stage();
-        stage.setScene(new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/admin_login_form.fxml")))));
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/admin_login_form.fxml")))));
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
         stage.show();
     }
 

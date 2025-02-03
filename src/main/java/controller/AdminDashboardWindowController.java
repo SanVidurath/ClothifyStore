@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
@@ -22,12 +23,17 @@ public class AdminDashboardWindowController {
     private Button btnViewReports;
 
     @FXML
-    void btnViewEmployeeFormOnAction(ActionEvent event) throws IOException {
+    void btnViewEmployeeFormOnAction(ActionEvent event)  {
         URL resource = this.getClass().getResource("/view/employee_form.fxml");
 
         assert resource!=null;
 
-        Parent load = FXMLLoader.load(resource);
+        Parent load = null;
+        try {
+            load = FXMLLoader.load(resource);
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
 
         ancPaneLoadContainer.getChildren().clear();
         ancPaneLoadContainer.getChildren().add(load);

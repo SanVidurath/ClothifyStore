@@ -3,6 +3,7 @@ package controller;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -62,7 +63,17 @@ public class EmployeeFormController {
 
     @FXML
     void btnAddOnAction(ActionEvent event) {
+        String nameText = txtName.getText();
+        String addressText = txtAddress.getText();
+        String emailText = txtEmail.getText();
+        String phoneNoText = txtPhoneNo.getText();
+        String passwordText = txtPassword.getText();
+        String confirmPasswordText = txtConfirmPassword.getText();
+        if(nameText.isEmpty()||addressText.isEmpty()||emailText.isEmpty()||phoneNoText.isEmpty()||passwordText.isEmpty()||confirmPasswordText.isEmpty()){
+            new Alert(Alert.AlertType.ERROR,"all fields must be filled").show();
+        }else{
 
+        }
     }
 
     @FXML

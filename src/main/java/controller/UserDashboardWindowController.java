@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
@@ -37,84 +38,119 @@ public class UserDashboardWindowController {
     private Button btnViewProducts;
 
     @FXML
-    void btnAddProductsFormOnAction(ActionEvent event) throws IOException {
+    void btnAddProductsFormOnAction(ActionEvent event){
         URL resource = this.getClass().getResource("/view/add_products_form.fxml");
 
         assert resource!=null;
 
-        Parent load = FXMLLoader.load(resource);
+        Parent load = null;
+        try {
+            load = FXMLLoader.load(resource);
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
 
         ancPaneLoadContainer.getChildren().clear();
         ancPaneLoadContainer.getChildren().add(load);
     }
 
     @FXML
-    void btnChangePasswordFormOnAction(ActionEvent event) throws IOException {
+    void btnChangePasswordFormOnAction(ActionEvent event){
         URL resource = this.getClass().getResource("/view/change_password_form.fxml");
 
         assert resource!=null;
 
-        Parent load = FXMLLoader.load(resource);
+        Parent load = null;
+        try {
+            load = FXMLLoader.load(resource);
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
 
         ancPaneLoadContainer.getChildren().clear();
         ancPaneLoadContainer.getChildren().add(load);
     }
 
     @FXML
-    void btnOrderFormOnAction(ActionEvent event) throws IOException {
+    void btnOrderFormOnAction(ActionEvent event) {
         URL resource = this.getClass().getResource("/view/order_form.fxml");
 
         assert resource!=null;
 
-        Parent load = FXMLLoader.load(resource);
+        Parent load = null;
+        try {
+            load = FXMLLoader.load(resource);
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
 
         ancPaneLoadContainer.getChildren().clear();
         ancPaneLoadContainer.getChildren().add(load);
     }
 
     @FXML
-    void btnOrderReturnsFormOnAction(ActionEvent event) throws IOException {
+    void btnOrderReturnsFormOnAction(ActionEvent event){
         URL resource = this.getClass().getResource("/view/order_returns_form.fxml");
 
         assert resource!=null;
 
-        Parent load = FXMLLoader.load(resource);
+        Parent load = null;
+        try {
+            load = FXMLLoader.load(resource);
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
 
         ancPaneLoadContainer.getChildren().clear();
         ancPaneLoadContainer.getChildren().add(load);
     }
 
     @FXML
-    void btnSupplierFormOnAction(ActionEvent event) throws IOException {
+    void btnSupplierFormOnAction(ActionEvent event){
         URL resource = this.getClass().getResource("/view/supplier_form.fxml");
 
         assert resource!=null;
 
-        Parent load = FXMLLoader.load(resource);
+        Parent load = null;
+        try {
+            load = FXMLLoader.load(resource);
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
 
         ancPaneLoadContainer.getChildren().clear();
         ancPaneLoadContainer.getChildren().add(load);
     }
 
     @FXML
-    void btnViewAllOrdersWindowOnAction(ActionEvent event) throws IOException {
+    void btnViewAllOrdersWindowOnAction(ActionEvent event){
         URL resource = this.getClass().getResource("/view/view_all_orders_window.fxml");
 
         assert resource!=null;
 
-        Parent load = FXMLLoader.load(resource);
+        Parent load = null;
+        try {
+            load = FXMLLoader.load(resource);
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
 
         ancPaneLoadContainer.getChildren().clear();
         ancPaneLoadContainer.getChildren().add(load);
     }
 
     @FXML
-    void btnViewProductsWindowOnAction(ActionEvent event) throws IOException {
+    void btnViewProductsWindowOnAction(ActionEvent event){
         URL resource = this.getClass().getResource("/view/view_products_window.fxml");
 
         assert resource!=null;
 
-        Parent load = FXMLLoader.load(resource);
+        Parent load = null;
+        try {
+            load = FXMLLoader.load(resource);
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
 
         ancPaneLoadContainer.getChildren().clear();
         ancPaneLoadContainer.getChildren().add(load);
