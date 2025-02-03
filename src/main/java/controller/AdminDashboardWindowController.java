@@ -10,7 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 import java.net.URL;
 
-public class AdminDashboardController {
+public class AdminDashboardWindowController {
 
     @FXML
     private AnchorPane ancPaneLoadContainer;

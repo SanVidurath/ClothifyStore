@@ -7,7 +7,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-public class ViewProductsController {
+public class ViewProductsWindowController {
 
     public ComboBox cmbSize;
     @FXML

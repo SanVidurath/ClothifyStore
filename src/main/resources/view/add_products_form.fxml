@@ -8,7 +8,6 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddProductsFormController">
    <children>
       <Rectangle fill="#0e4c92" height="71.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="600.0" />
@@ -18,11 +17,11 @@
          </font>
       </Label>
       <JFXTextField fx:id="txtDescription" layoutX="35.0" layoutY="94.0" promptText="description" />
-      <ComboBox fx:id="cmbCategory" layoutX="216.0" layoutY="94.0" onAction="#cmbSelectCategoryOnAction" prefWidth="150.0" promptText="category" />
-      <ComboBox fx:id="cmbSize" layoutX="415.0" layoutY="94.0" onAction="#cmbSelectSizeOnAction" prefWidth="150.0" promptText="size" />
+      <ComboBox fx:id="cmbCategory" layoutX="216.0" layoutY="94.0" onAction="#cmbShowCategoryOnAction" prefWidth="150.0" promptText="category" />
+      <ComboBox fx:id="cmbSize" layoutX="415.0" layoutY="94.0" onAction="#cmbShowSizeOnAction" prefWidth="150.0" promptText="size" />
       <JFXTextField fx:id="txtUnitPrice" layoutX="35.0" layoutY="166.0" promptText="unit price" />
       <JFXTextField fx:id="txtQuantity" layoutX="224.0" layoutY="166.0" promptText="quantity" />
-      <ComboBox fx:id="cmbSupplierId" layoutX="415.0" layoutY="166.0" onAction="#cmbSelectSupplierIdOnAction" prefWidth="150.0" promptText="supplier id" />
+      <ComboBox fx:id="cmbSupplierId" layoutX="415.0" layoutY="166.0" onAction="#cmbShowSupplierIdOnAction" prefWidth="150.0" promptText="supplier id" />
       <Button fx:id="btnAdd" layoutX="190.0" layoutY="269.0" mnemonicParsing="false" onAction="#btnAddOnAction" style="-fx-background-color: #061E3A;" text="Add" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />

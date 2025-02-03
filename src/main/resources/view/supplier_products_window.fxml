@@ -8,19 +8,18 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SupplierProductsController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SupplierProductsWindowController">
    <children>
       <Rectangle fill="#0e4c92" height="71.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="600.0" />
-      <Label layoutX="167.0" layoutY="18.0" text="Supplier Products Form" textFill="#efefef">
+      <Label layoutX="149.0" layoutY="18.0" text="Supplier Products Window" textFill="#efefef">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
       <TableView fx:id="tblSupplierProducts" layoutX="35.0" layoutY="103.0" prefHeight="200.0" prefWidth="524.0">
         <columns>
-          <TableColumn fx:id="colSupplierId" prefWidth="99.33331298828125" text="supplier id" />
-          <TableColumn fx:id="colSupplierName" prefWidth="109.33334350585938" text="supplier name" />
+          <TableColumn fx:id="colSupplierId" prefWidth="99.33331298828125" text="Supplier id" />
+          <TableColumn fx:id="colSupplierName" prefWidth="109.33334350585938" text="Supplier name" />
             <TableColumn fx:id="colProductName" prefWidth="92.66668701171875" text="Product name" />
             <TableColumn fx:id="colUnitPrice" prefWidth="112.00006103515625" text="Unit Price" />
             <TableColumn fx:id="colQty" prefWidth="112.00006103515625" text="Quantity" />

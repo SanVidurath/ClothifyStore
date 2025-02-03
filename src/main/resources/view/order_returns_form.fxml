@@ -18,15 +18,15 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cmbOrderId" layoutX="38.0" layoutY="96.0" onAction="#cmbSelectOrderIdOnAction" prefWidth="150.0" promptText="order id" />
-      <ComboBox fx:id="cmbProductCode" layoutX="239.0" layoutY="96.0" onAction="#cmbSelectProductCodeOnAction" prefWidth="150.0" promptText="product code" />
+      <ComboBox fx:id="cmbOrderId" layoutX="38.0" layoutY="96.0" onAction="#cmbShowOrderIdOnAction" prefWidth="150.0" promptText="order id" />
+      <ComboBox fx:id="cmbProductCode" layoutX="239.0" layoutY="96.0" onAction="#cmbShowProductCodeOnAction" prefWidth="150.0" promptText="product code" />
       <JFXTextField fx:id="txtQuantity" disable="true" layoutX="433.0" layoutY="96.0" promptText="quantity" />
       <JFXTextField fx:id="txtOrderDate" disable="true" layoutX="247.0" layoutY="154.0" promptText="order date" />
       <TableView fx:id="tblOrderReturns" layoutX="48.0" layoutY="200.0" prefHeight="149.0" prefWidth="504.0">
         <columns>
-          <TableColumn fx:id="colOrderId" prefWidth="159.33328247070312" text="order_id" />
-          <TableColumn fx:id="colProdCode" prefWidth="174.66668701171875" text="prod_code" />
-            <TableColumn fx:id="colQty" prefWidth="169.33331298828125" text="quantity" />
+          <TableColumn fx:id="colOrderId" prefWidth="159.33328247070312" text="Order id" />
+          <TableColumn fx:id="colProdCode" prefWidth="174.66668701171875" text="Product code" />
+            <TableColumn fx:id="colQuantity" prefWidth="169.33331298828125" text="Quantity" />
         </columns>
       </TableView>
       <Button fx:id="btnReturn" layoutX="465.0" layoutY="360.0" mnemonicParsing="false" onAction="#btnReturnOnAction" style="-fx-background-color: #061E3A;" text="Return" textFill="WHITE">

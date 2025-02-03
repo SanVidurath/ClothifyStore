@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-public class ViewAllOrdersController {
+public class ViewAllOrdersWindowController {
 
     @FXML
     private Button btnReload;

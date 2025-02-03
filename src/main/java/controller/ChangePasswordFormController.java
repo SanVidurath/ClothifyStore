@@ -7,11 +7,12 @@ import javafx.scene.control.Button;
 
 public class ChangePasswordFormController {
 
+
     @FXML
     private Button btnChangePassword;
 
     @FXML
-    private JFXTextField txtConfirmPassword;
+    private JFXTextField txtConfirmNewPassword;
 
     @FXML
     private JFXTextField txtEmail;

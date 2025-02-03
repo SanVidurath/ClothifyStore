@@ -26,7 +26,7 @@ public class OrderReturnsFormController {
     private TableColumn<?, ?> colProdCode;
 
     @FXML
-    private TableColumn<?, ?> colQty;
+    private TableColumn<?, ?> colQuantity;
 
     @FXML
     private TableView<?> tblOrderReturns;
@@ -43,12 +43,12 @@ public class OrderReturnsFormController {
     }
 
     @FXML
-    void cmbSelectOrderIdOnAction(ActionEvent event) {
+    void cmbShowOrderIdOnAction(ActionEvent event) {
 
     }
 
     @FXML
-    void cmbSelectProductCodeOnAction(ActionEvent event) {
+    void cmbShowProductCodeOnAction(ActionEvent event) {
 
     }
 

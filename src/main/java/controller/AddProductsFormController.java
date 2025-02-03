@@ -59,17 +59,17 @@ public class AddProductsFormController {
     }
 
     @FXML
-    void cmbSelectCategoryOnAction(ActionEvent event) {
+    void cmbShowCategoryOnAction(ActionEvent event) {
 
     }
 
     @FXML
-    void cmbSelectSizeOnAction(ActionEvent event) {
+    void cmbShowSizeOnAction(ActionEvent event) {
 
     }
 
     @FXML
-    void cmbSelectSupplierIdOnAction(ActionEvent event) {
+    void cmbShowSupplierIdOnAction(ActionEvent event) {
 
     }
 

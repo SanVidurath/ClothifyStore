@@ -10,7 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 import java.net.URL;
 
-public class UserDashboardController {
+public class UserDashboardWindowController {
 
     @FXML
     private AnchorPane ancPaneLoadContainer;
@@ -61,8 +61,15 @@ public class UserDashboardController {
     }
 
     @FXML
-    void btnOrderFormOnAction(ActionEvent event) {
+    void btnOrderFormOnAction(ActionEvent event) throws IOException {
+        URL resource = this.getClass().getResource("/view/order_form.fxml");
 
+        assert resource!=null;
+
+        Parent load = FXMLLoader.load(resource);
+
+        ancPaneLoadContainer.getChildren().clear();
+        ancPaneLoadContainer.getChildren().add(load);
     }
 
     @FXML
@@ -90,8 +97,8 @@ public class UserDashboardController {
     }
 
     @FXML
-    void btnViewAllOrdersOnAction(ActionEvent event) throws IOException {
-        URL resource = this.getClass().getResource("/view/view_all_orders.fxml");
+    void btnViewAllOrdersWindowOnAction(ActionEvent event) throws IOException {
+        URL resource = this.getClass().getResource("/view/view_all_orders_window.fxml");
 
         assert resource!=null;
 
@@ -102,8 +109,8 @@ public class UserDashboardController {
     }
 
     @FXML
-    void btnViewProductsOnAction(ActionEvent event) throws IOException {
-        URL resource = this.getClass().getResource("/view/view_products.fxml");
+    void btnViewProductsWindowOnAction(ActionEvent event) throws IOException {
+        URL resource = this.getClass().getResource("/view/view_products_window.fxml");
 
         assert resource!=null;
 
