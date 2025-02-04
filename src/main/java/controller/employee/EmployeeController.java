@@ -61,6 +61,15 @@ public class EmployeeController implements EmployeeService {
 
     }
 
+    public boolean update(String email, String newEmail) throws SQLException {
+        String sql = "Update employees set email=? where email='" +email+ "'";
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setObject(1, newEmail);
+        return preparedStatement.executeUpdate() > 0;
+
+    }
+
     @Override
     public boolean delete(String email) throws SQLException {
         String sql = "Delete from employees where email='"+email+"'";
