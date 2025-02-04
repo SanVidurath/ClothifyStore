@@ -1,5 +1,6 @@
 package controller;
 
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,7 +26,7 @@ public class AdminLoginFormController {
     private JFXTextField txtEmail;
 
     @FXML
-    private JFXTextField txtPassword;
+    private JFXPasswordField txtPassword;
 
     @FXML
     void btnLoginOnAction(ActionEvent event) {

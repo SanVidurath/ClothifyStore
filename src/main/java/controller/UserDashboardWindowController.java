@@ -55,23 +55,6 @@ public class UserDashboardWindowController {
     }
 
     @FXML
-    void btnChangePasswordFormOnAction(ActionEvent event){
-        URL resource = this.getClass().getResource("/view/change_password_form.fxml");
-
-        assert resource!=null;
-
-        Parent load = null;
-        try {
-            load = FXMLLoader.load(resource);
-        } catch (IOException e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
-        }
-
-        ancPaneLoadContainer.getChildren().clear();
-        ancPaneLoadContainer.getChildren().add(load);
-    }
-
-    @FXML
     void btnOrderFormOnAction(ActionEvent event) {
         URL resource = this.getClass().getResource("/view/order_form.fxml");
 

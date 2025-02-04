@@ -17,13 +17,33 @@ public class AdminDashboardWindowController {
     private AnchorPane ancPaneLoadContainer;
 
     @FXML
+    private Button btnChangeEmailForm;
+
+    @FXML
     private Button btnEmployeeForm;
 
     @FXML
     private Button btnViewReports;
 
     @FXML
-    void btnViewEmployeeFormOnAction(ActionEvent event)  {
+    void btnChangeEmailFormOnAction(ActionEvent event) {
+        URL resource = this.getClass().getResource("/view/change_email_form.fxml");
+
+        assert resource!=null;
+
+        Parent load = null;
+        try {
+            load = FXMLLoader.load(resource);
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
+
+        ancPaneLoadContainer.getChildren().clear();
+        ancPaneLoadContainer.getChildren().add(load);
+    }
+
+    @FXML
+    void btnViewEmployeeFormOnAction(ActionEvent event) {
         URL resource = this.getClass().getResource("/view/employee_form.fxml");
 
         assert resource!=null;
