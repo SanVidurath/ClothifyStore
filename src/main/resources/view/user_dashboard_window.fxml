@@ -9,38 +9,43 @@
 <AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserDashboardWindowController">
    <children>
       <Rectangle fill="#0e4c92" height="400.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
-      <Label layoutX="18.0" layoutY="20.0" text="User Dashboard" textFill="WHITE">
+      <Label layoutX="18.0" layoutY="14.0" text="User Dashboard" textFill="WHITE">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <Button fx:id="btnAddProducts" layoutX="6.0" layoutY="65.0" mnemonicParsing="false" onAction="#btnAddProductsFormOnAction" style="-fx-background-color: #061E3A;" text="Add Products Form" textFill="WHITE">
+      <Button fx:id="btnAddProducts" layoutX="6.0" layoutY="59.0" mnemonicParsing="false" onAction="#btnAddProductsFormOnAction" style="-fx-background-color: #061E3A;" text="Add Products Form" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btnViewProducts" layoutX="27.0" layoutY="117.0" mnemonicParsing="false" onAction="#btnViewProductsWindowOnAction" style="-fx-background-color: #061E3A;" text="View Products" textFill="WHITE">
+      <Button fx:id="btnViewProducts" layoutX="10.0" layoutY="106.0" mnemonicParsing="false" onAction="#btnViewProductsWindowOnAction" style="-fx-background-color: #061E3A;" text="Modify Prod Form" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
       <AnchorPane fx:id="ancPaneLoadContainer" layoutX="200.0" prefHeight="400.0" prefWidth="601.0" />
-      <Button fx:id="btnSupplierForm" layoutX="27.0" layoutY="170.0" mnemonicParsing="false" onAction="#btnSupplierFormOnAction" style="-fx-background-color: #061E3A;" text="Supplier Form" textFill="WHITE">
+      <Button fx:id="btnSupplierForm" layoutX="27.0" layoutY="154.0" mnemonicParsing="false" onAction="#btnSupplierFormOnAction" style="-fx-background-color: #061E3A;" text="Supplier Form" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btnOrderForm" layoutX="39.0" layoutY="225.0" mnemonicParsing="false" onAction="#btnOrderFormOnAction" style="-fx-background-color: #061E3A;" text="Order Form" textFill="WHITE">
+      <Button fx:id="btnOrderForm" layoutX="39.0" layoutY="250.0" mnemonicParsing="false" onAction="#btnOrderFormOnAction" style="-fx-background-color: #061E3A;" text="Order Form" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btnOrderReturnsForm" layoutX="4.0" layoutY="281.0" mnemonicParsing="false" onAction="#btnOrderReturnsFormOnAction" style="-fx-background-color: #061E3A;" text="Order Returns Form" textFill="WHITE">
+      <Button fx:id="btnOrderReturnsForm" layoutX="4.0" layoutY="298.0" mnemonicParsing="false" onAction="#btnOrderReturnsFormOnAction" style="-fx-background-color: #061E3A;" text="Order Returns Form" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btnViewAllOrders" layoutX="21.0" layoutY="337.0" mnemonicParsing="false" onAction="#btnViewAllOrdersWindowOnAction" style="-fx-background-color: #061E3A;" text="View All Orders" textFill="WHITE">
+      <Button fx:id="btnViewAllOrders" layoutX="21.0" layoutY="346.0" mnemonicParsing="false" onAction="#btnViewAllOrdersWindowOnAction" style="-fx-background-color: #061E3A;" text="View All Orders" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnViewSupplierProducts" layoutX="6.0" layoutY="202.0" mnemonicParsing="false" onAction="#btnViewSupplierProductsOnAction" prefHeight="39.0" prefWidth="188.0" style="-fx-background-color: #061E3A;" text="View Supplier Prod" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

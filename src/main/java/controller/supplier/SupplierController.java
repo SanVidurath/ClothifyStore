@@ -3,6 +3,8 @@ package controller.supplier;
 import controller.db.DBConnection;
 import controller.model.Employee;
 import controller.model.Supplier;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -66,5 +68,12 @@ public class SupplierController implements SupplierService{
         String sql = "Delete from suppliers where email='"+email+"'";
         Connection connection = DBConnection.getInstance().getConnection();
         return connection.createStatement().executeUpdate(sql)>0;
+    }
+
+    public ObservableList<Integer> getSupplierIds() throws SQLException {
+        ObservableList<Integer> supplierIds = FXCollections.observableArrayList();
+        List<Supplier> supplierList = getAll();
+        supplierList.forEach(supplier -> supplierIds.add(supplier.getId()));
+        return supplierIds;
     }
 }

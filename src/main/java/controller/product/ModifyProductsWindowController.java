@@ -1,4 +1,4 @@
-package controller;
+package controller.product;
 
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -6,10 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 
-public class AddProductsFormController {
-
-    @FXML
-    private Button btnAdd;
+public class ModifyProductsWindowController {
 
     @FXML
     private Button btnDelete;
@@ -24,10 +21,10 @@ public class AddProductsFormController {
     private ComboBox<?> cmbCategory;
 
     @FXML
-    private ComboBox<?> cmbSize;
+    private ComboBox<?> cmbProductCode;
 
     @FXML
-    private ComboBox<?> cmbSupplierId;
+    private ComboBox<?> cmbSize;
 
     @FXML
     private JFXTextField txtDescription;
@@ -36,12 +33,10 @@ public class AddProductsFormController {
     private JFXTextField txtQuantity;
 
     @FXML
-    private JFXTextField txtUnitPrice;
+    private JFXTextField txtSupplierId;
 
     @FXML
-    void btnAddOnAction(ActionEvent event) {
-
-    }
+    private JFXTextField txtUnitPrice;
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
@@ -64,12 +59,12 @@ public class AddProductsFormController {
     }
 
     @FXML
-    void cmbShowSizeOnAction(ActionEvent event) {
+    void cmbShowProductCodesOnAction(ActionEvent event) {
 
     }
 
     @FXML
-    void cmbShowSupplierIdOnAction(ActionEvent event) {
+    void cmbShowSizeOnAction(ActionEvent event) {
 
     }
 

@@ -17,16 +17,11 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtName" layoutX="37.0" layoutY="87.0" promptText="name" />
-      <JFXTextField fx:id="txtCompany" layoutX="437.0" layoutY="87.0" promptText="company" />
-      <JFXTextField fx:id="txtEmail" layoutX="37.0" layoutY="147.0" promptText="email" />
-      <JFXTextField fx:id="txtPhoneNo" layoutX="230.0" layoutY="87.0" promptText="phone no" />
-      <Button fx:id="btnViewSupplierProducts" layoutX="305.0" layoutY="147.0" mnemonicParsing="false" onAction="#btnViewSupplierProductsOnAction" style="-fx-background-color: #061E3A;" text="View Supplier Products" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
-      <TableView fx:id="tblSuppliers" layoutX="32.0" layoutY="235.0" prefHeight="118.0" prefWidth="539.0">
+      <JFXTextField fx:id="txtName" layoutX="234.0" layoutY="87.0" promptText="name" />
+      <JFXTextField fx:id="txtCompany" layoutX="37.0" layoutY="146.0" promptText="company" />
+      <JFXTextField fx:id="txtEmail" layoutX="37.0" layoutY="87.0" promptText="email" />
+      <JFXTextField fx:id="txtPhoneNo" layoutX="446.0" layoutY="87.0" promptText="phone no" />
+      <TableView fx:id="tblSuppliers" layoutX="32.0" layoutY="197.0" prefHeight="145.0" prefWidth="539.0">
         <columns>
           <TableColumn fx:id="colId" prefWidth="107.33331298828125" text="Id" />
           <TableColumn fx:id="colName" prefWidth="98.66665649414062" text="Name" />
@@ -35,22 +30,22 @@
             <TableColumn fx:id="colEmail" prefWidth="118.6666259765625" text="Email" />
         </columns>
       </TableView>
-      <Button fx:id="btnAdd" layoutX="278.0" layoutY="193.0" mnemonicParsing="false" onAction="#btnAddOnAction" style="-fx-background-color: #061E3A;" text="Add" textFill="WHITE">
+      <Button fx:id="btnAdd" layoutX="260.0" layoutY="148.0" mnemonicParsing="false" onAction="#btnAddOnAction" style="-fx-background-color: #061E3A;" text="Add" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btnSearch" layoutX="347.0" layoutY="193.0" mnemonicParsing="false" onAction="#btnSearchOnAction" style="-fx-background-color: #061E3A;" text="Search" textFill="WHITE">
+      <Button fx:id="btnSearch" layoutX="329.0" layoutY="148.0" mnemonicParsing="false" onAction="#btnSearchOnAction" style="-fx-background-color: #061E3A;" text="Search" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btnUpdate" layoutX="430.0" layoutY="193.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" style="-fx-background-color: #061E3A;" text="Update" textFill="WHITE">
+      <Button fx:id="btnUpdate" layoutX="412.0" layoutY="148.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" style="-fx-background-color: #061E3A;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btnDelete" layoutX="513.0" layoutY="193.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" style="-fx-background-color: #061E3A;" text="Delete" textFill="WHITE">
+      <Button fx:id="btnDelete" layoutX="495.0" layoutY="148.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" style="-fx-background-color: #061E3A;" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

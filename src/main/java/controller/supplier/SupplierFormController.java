@@ -215,16 +215,6 @@ public class SupplierFormController implements Initializable {
         }
     }
 
-    @FXML
-    void btnViewSupplierProductsOnAction(ActionEvent event) {
-        Stage stage = new Stage();
-        try {
-            stage.setScene(new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/supplier_products_window.fxml")))));
-        } catch (IOException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-        }
-        stage.show();
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

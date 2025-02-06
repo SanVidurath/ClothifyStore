@@ -13,11 +13,15 @@ import java.net.URL;
 
 public class UserDashboardWindowController {
 
+
     @FXML
     private AnchorPane ancPaneLoadContainer;
 
     @FXML
     private Button btnAddProducts;
+
+    @FXML
+    private Button btnViewSupplierProducts;
 
     @FXML
     private Button btnChangePasswordForm;
@@ -124,7 +128,7 @@ public class UserDashboardWindowController {
 
     @FXML
     void btnViewProductsWindowOnAction(ActionEvent event){
-        URL resource = this.getClass().getResource("/view/view_products_window.fxml");
+        URL resource = this.getClass().getResource("/view/modify_products_window.fxml");
 
         assert resource!=null;
 
@@ -139,4 +143,18 @@ public class UserDashboardWindowController {
         ancPaneLoadContainer.getChildren().add(load);
     }
 
+    public void btnViewSupplierProductsOnAction(ActionEvent actionEvent) {
+        URL resource = this.getClass().getResource("/view/supplier_products_window.fxml");
+
+        assert resource!=null;
+
+        try {
+            Parent load = FXMLLoader.load(resource);
+
+            ancPaneLoadContainer.getChildren().clear();
+            ancPaneLoadContainer.getChildren().add(load);
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
+    }
 }
