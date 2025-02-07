@@ -1,6 +1,6 @@
 package controller.employee;
 
-import controller.model.Employee;
+import model.Employee;
 
 import java.sql.SQLException;
 import java.util.List;

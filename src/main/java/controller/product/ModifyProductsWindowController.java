@@ -1,9 +1,7 @@
 package controller.product;
 
 import com.jfoenix.controls.JFXTextField;
-import controller.model.Product;
-import controller.model.Supplier;
-import controller.supplier.SupplierController;
+import model.Product;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,8 +13,6 @@ import javafx.scene.control.ComboBox;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 

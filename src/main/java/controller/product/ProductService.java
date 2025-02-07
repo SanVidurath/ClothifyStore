@@ -1,7 +1,6 @@
 package controller.product;
 
-import controller.model.Product;
-import controller.model.Supplier;
+import model.Product;
 
 import java.sql.SQLException;
 import java.util.List;

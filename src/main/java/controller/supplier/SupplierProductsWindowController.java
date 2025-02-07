@@ -1,6 +1,6 @@
 package controller.supplier;
 
-import controller.model.Product;
+import model.Product;
 import controller.product.ProductController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

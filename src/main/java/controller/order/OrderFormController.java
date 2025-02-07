@@ -1,11 +1,11 @@
 package controller.order;
 
 import com.jfoenix.controls.JFXTextField;
+import controller.customer.CustomerController;
 import controller.employee.EmployeeController;
-import controller.model.Employee;
-import controller.model.Product;
+import model.*;
+import model.cartTM.CartTM;
 import controller.product.ProductController;
-import controller.supplier.SupplierController;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -15,19 +15,24 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class OrderFormController implements Initializable {
 
 
+    public Label lblNetTotalHeading;
     @FXML
     private Button btnAddToCart;
 
@@ -68,7 +73,7 @@ public class OrderFormController implements Initializable {
     private Label lblTime;
 
     @FXML
-    private TableView<?> tblOrders;
+    private TableView tblOrders;
 
     @FXML
     private JFXTextField txtCustomerEmail;
@@ -93,31 +98,140 @@ public class OrderFormController implements Initializable {
 
     @FXML
     private JFXTextField txtUnitPrice;
+    ObservableList<CartTM> cartDataList = FXCollections.observableArrayList();
+
+    private static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
 
     @FXML
     void btnAddToCartOnAction(ActionEvent event) {
+        loadData();
+        calcNetTotal();
+    }
+
+    private void calcNetTotal(){
+        Double total = 0.0;
+        for(CartTM cartData:cartDataList){
+            total+=cartData.getTotal();
+        }
+        lblNetTotal.setText(String.valueOf(total));
+    }
+
+    private void loadData(){
         String customerNameText = txtCustomerName.getText();
         String customerEmailText = txtCustomerEmail.getText();
         String customerPhoneNoText = txtCustomerPhoneNo.getText();
-        String employeeId = String.valueOf(cmbEmployeeIds.getValue());
-        String employeeNameText = txtEmployeeName.getText();
-        String paymentType = String.valueOf(cmbPaymentType.getValue());
-        String productCode = String.valueOf(cmbProductCode.getValue());
         String descriptionText = txtProductDescription.getText();
-        String unitPriceText = txtUnitPrice.getText();
-        String quantityInStockText = txtQuantityInStock.getText();
-        String quantityPurchasedText = txtQuantityPurchased.getText();
 
-        if(customerNameText.isEmpty()||customerEmailText.isEmpty()||customerPhoneNoText.isEmpty()||cmbEmployeeIds.getSelectionModel().isEmpty()||cmbPaymentType.getSelectionModel().isEmpty()||cmbProductCode.getSelectionModel().isEmpty()||quantityPurchasedText.isEmpty()){
+
+        if(customerNameText.isEmpty()||customerEmailText.isEmpty()||customerPhoneNoText.isEmpty()||cmbEmployeeIds.getSelectionModel().isEmpty()||cmbPaymentType.getSelectionModel().isEmpty()||cmbProductCode.getSelectionModel().isEmpty()||txtQuantityPurchased.getText().isEmpty()){
             new Alert(Alert.AlertType.ERROR,"all fields must be filled").show();
+        }else if (!validateEmail(customerEmailText)) {
+            new Alert(Alert.AlertType.ERROR, "not a valid email address").show();
         }else{
+            try{
+                Integer productCode = Integer.parseInt(String.valueOf(cmbProductCode.getValue()));
+                Double unitPrice = Double.parseDouble(txtUnitPrice.getText());
+                Integer quantityPurchased = Integer.parseInt(txtQuantityPurchased.getText());
+                Double totalPrice = unitPrice*quantityPurchased;
+
+                if(quantityPurchased>Integer.parseInt(txtQuantityInStock.getText())){
+                    new Alert(Alert.AlertType.ERROR,"cannot purchase more than qty in stock").show();
+                    return;
+                }
+
+                if(quantityPurchased<=0){
+                    new Alert(Alert.AlertType.ERROR,"quantity purchased has to be at least 1").show();
+                    return;
+                }
+
+                txtQuantityInStock.setText(String.valueOf(Integer.parseInt(txtQuantityInStock.getText()) - quantityPurchased));
+
+                CartTM cartTM = new CartTM(productCode, descriptionText, unitPrice, quantityPurchased, totalPrice);
+                CartTM cartData = checkItem(cartTM);
+                if (cartData != null) {
+                    cartDataList.remove(cartData);
+                    cartData.setQuantity(cartData.getQuantity() + cartTM.getQuantity());
+                    cartData.setTotal(cartData.getTotal() + cartTM.getTotal());
+                    cartDataList.add(cartData);
+                } else {
+                    cartDataList.add(cartTM);
+                }
+
+                tblOrders.setItems(cartDataList);
+                colProductCode.setCellValueFactory(new PropertyValueFactory<>("productCode"));
+                colProductDescription.setCellValueFactory(new PropertyValueFactory<>("productDescription"));
+                colUnitPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
+                colQuantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+                colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
+
+            }catch (NumberFormatException e){
+                new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+            }
 
         }
+    }
+
+    private boolean validateEmail(String emailStr) {
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
+        return matcher.matches();
+    }
+
+    private CartTM checkItem(CartTM cartTMItem) {
+        for (CartTM cartData : cartDataList) {
+            if (cartData.getProductCode().equals(cartTMItem.getProductCode())) {
+                return cartData;
+            }
+        }
+        return null;
     }
 
     @FXML
     void btnPlaceOrderOnAction(ActionEvent event) {
 
+        boolean isAddedCustomer = placeCustomer();
+        if(isAddedCustomer){
+            String dateText = lblDate.getText();
+            Integer employeeId = Integer.parseInt(String.valueOf(cmbEmployeeIds.getValue()));
+            String employeeNameText = txtEmployeeName.getText();
+            double netTotal = Double.parseDouble(lblNetTotal.getText());
+            String paymentType = String.valueOf(cmbPaymentType.getValue());
+
+            try {
+                Customer customer = new CustomerController().search(txtCustomerEmail.getText());
+
+                ArrayList<OrderDetail> orderDetailArrayList = new ArrayList<>();
+
+                cartDataList.forEach(cartTM -> {
+                    orderDetailArrayList.add(new OrderDetail(1,cartTM.getProductCode(), cartTM.getUnitPrice(), cartTM.getQuantity()));
+                });
+                Order order = new Order(1, dateText, employeeId, employeeNameText, customer.getId(), netTotal, paymentType, orderDetailArrayList);
+
+                boolean isPlacedOrder = new OrderController().place(order);
+                if(isPlacedOrder){
+                    new Alert(Alert.AlertType.INFORMATION,"order placed successfully").show();
+                }else{
+                    new Alert(Alert.AlertType.ERROR,"order not placed").show();
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+            }
+
+        }
+
+
+    }
+
+    private boolean placeCustomer(){
+        Customer customer = new Customer(1, txtCustomerName.getText(), txtCustomerEmail.getText(), txtCustomerPhoneNo.getText());
+        boolean isAddedCustomer = false;
+        try {
+            isAddedCustomer = new CustomerController().add(customer);
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
+        return isAddedCustomer;
     }
 
     @FXML
@@ -161,7 +275,18 @@ public class OrderFormController implements Initializable {
             Product product = new ProductController().search(Integer.parseInt(prodCode));
             txtProductDescription.setText(product.getDescription());
             txtUnitPrice.setText(String.valueOf(product.getUnitPrice()));
-            txtQuantityInStock.setText(String.valueOf(product.getQuantityInStock()));
+
+
+            String stockInDb = String.valueOf(product.getQuantityInStock());
+
+            ObservableList<CartTM> items = tblOrders.getItems();
+            for (CartTM cartItem : items) {
+                if (cartItem.getProductCode().equals(Integer.parseInt(prodCode))) {
+                    txtQuantityInStock.setText(String.valueOf(Integer.parseInt(stockInDb) - cartItem.getQuantity()));
+                    return;
+                }
+            }
+            txtQuantityInStock.setText(stockInDb);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }

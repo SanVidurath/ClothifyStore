@@ -1,9 +1,9 @@
 package controller.product;
 
-import controller.db.DBConnection;
-import controller.model.Product;
-import controller.model.ProductDetail;
-import controller.model.Supplier;
+import db.DBConnection;
+import model.OrderDetail;
+import model.Product;
+import model.ProductDetail;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -54,7 +54,7 @@ public class ProductController implements ProductService {
         Connection connection = DBConnection.getInstance().getConnection();
         ResultSet resultSet = connection.createStatement().executeQuery(sql);
         while (resultSet.next()) {
-            Product product = new Product(Integer.parseInt(resultSet.getString(1)),resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),Double.parseDouble(resultSet.getString(5)),Integer.parseInt(resultSet.getString(6)),Integer.parseInt(resultSet.getString(7)));
+            Product product = new Product(Integer.parseInt(resultSet.getString(1)), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), Double.parseDouble(resultSet.getString(5)), Integer.parseInt(resultSet.getString(6)), Integer.parseInt(resultSet.getString(7)));
             productList.add(product);
         }
         return productList;
@@ -97,19 +97,19 @@ public class ProductController implements ProductService {
     @Override
     public boolean delete(Integer code) throws SQLException {
         Connection connection = DBConnection.getInstance().getConnection();
-        String sql = "Delete from products where prod_code='"+code+"'";
+        String sql = "Delete from products where prod_code='" + code + "'";
 
-        try{
+        try {
             connection.setAutoCommit(false);
             boolean isProductDetailDeleted = new ProductDetailController().delete(code);
-            if(isProductDetailDeleted){
+            if (isProductDetailDeleted) {
                 boolean isProductDeleted = connection.createStatement().executeUpdate(sql) > 0;
-                if(isProductDeleted){
+                if (isProductDeleted) {
                     connection.commit();
                     return true;
                 }
             }
-        }finally {
+        } finally {
             connection.setAutoCommit(true);
         }
         connection.rollback();
@@ -138,5 +138,24 @@ public class ProductController implements ProductService {
         List<Product> productList = getAll();
         productList.forEach(product -> productIds.add(product.getCode()));
         return productIds;
+    }
+
+    public boolean updateStock(List<OrderDetail> orderDetailList) throws SQLException {
+        for (OrderDetail orderDetail : orderDetailList) {
+            boolean isUpdateStock = updateStock(orderDetail);
+            if(!isUpdateStock){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean updateStock(OrderDetail orderDetail) throws SQLException {
+        String sql = "Update products set qty_in_stock=qty_in_stock-? where prod_code=?";
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setObject(1,orderDetail.getQuantityPurchased());
+        preparedStatement.setObject(2,orderDetail.getProductCode());
+        return preparedStatement.executeUpdate()>0;
     }
 }

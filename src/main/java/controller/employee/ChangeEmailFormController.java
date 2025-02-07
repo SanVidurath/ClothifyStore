@@ -1,7 +1,7 @@
 package controller.employee;
 
 import com.jfoenix.controls.JFXTextField;
-import controller.model.Employee;
+import model.Employee;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;

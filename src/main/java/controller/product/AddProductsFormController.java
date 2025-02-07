@@ -1,8 +1,8 @@
 package controller.product;
 
 import com.jfoenix.controls.JFXTextField;
-import controller.db.DBConnection;
-import controller.model.Product;
+import db.DBConnection;
+import model.Product;
 import controller.supplier.SupplierController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

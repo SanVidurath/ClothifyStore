@@ -53,7 +53,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Label fx:id="lblNetTotal" layoutX="60.0" layoutY="372.0" text="Net total : " textFill="RED">
+      <Label fx:id="lblNetTotal" layoutX="121.0" layoutY="369.0" text="0" textFill="RED">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -63,5 +63,10 @@
       <JFXTextField fx:id="txtUnitPrice" disable="true" layoutX="425.0" layoutY="162.0" promptText="unit price" />
       <JFXTextField fx:id="txtQuantityPurchased" layoutX="229.0" layoutY="203.0" promptText="quantity required" />
       <JFXTextField fx:id="txtQuantityInStock" disable="true" layoutX="40.0" layoutY="203.0" promptText="quantity in stock" />
+      <Label fx:id="lblNetTotalHeading" layoutX="55.0" layoutY="369.0" text="Net total : " textFill="RED">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

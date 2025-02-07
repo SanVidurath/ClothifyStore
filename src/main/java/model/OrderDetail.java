@@ -1,4 +1,4 @@
-package controller.model;
+package model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,9 +9,9 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class ProductDetail {
-    private Integer prodCode;
-    private Integer supId;
+public class OrderDetail {
+    private Integer orderId;
+    private Integer productCode;
     private Double unitPrice;
-    private Integer qtySupplied;
+    private Integer quantityPurchased;
 }

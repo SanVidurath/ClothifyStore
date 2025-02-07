@@ -1,8 +1,7 @@
 package controller.employee;
 
-import controller.db.DBConnection;
-import controller.model.Employee;
-import controller.model.Product;
+import db.DBConnection;
+import model.Employee;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

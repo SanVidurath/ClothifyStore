@@ -1,26 +1,18 @@
 package controller.supplier;
 
 import com.jfoenix.controls.JFXTextField;
-import controller.employee.EmployeeController;
-import controller.model.Employee;
-import controller.model.Supplier;
+import model.Supplier;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
-import org.jasypt.util.text.BasicTextEncryptor;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;

@@ -1,4 +1,4 @@
-package controller.db;
+package db;
 
 import lombok.Getter;
 
