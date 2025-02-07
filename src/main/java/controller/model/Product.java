@@ -1,15 +1,12 @@
 package controller.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Product {
+public class Product{
     private Integer code;
     private String description;
     private String category;

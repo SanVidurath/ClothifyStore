@@ -2,6 +2,9 @@ package controller.employee;
 
 import controller.db.DBConnection;
 import controller.model.Employee;
+import controller.model.Product;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -48,6 +51,17 @@ public class EmployeeController implements EmployeeService {
         return employee;
     }
 
+    public Employee search(Integer id) throws SQLException {
+        Employee employee = null;
+        String sql = "Select * from employees where id='" + id + "'";
+        Connection connection = DBConnection.getInstance().getConnection();
+        ResultSet resultSet = connection.createStatement().executeQuery(sql);
+        while (resultSet.next()) {
+            employee = new Employee(Integer.parseInt(resultSet.getString(1)), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6));
+        }
+        return employee;
+    }
+
     @Override
     public boolean update(Employee employee) throws SQLException {
         String sql = "Update employees set emp_name=?,address=?,phone_no=?,password=? where email='" + employee.getEmail() + "'";
@@ -78,4 +92,10 @@ public class EmployeeController implements EmployeeService {
     }
 
 
+    public ObservableList<Integer> getIds() throws SQLException {
+        ObservableList<Integer> employeeIds = FXCollections.observableArrayList();
+        List<Employee> employeeList = getAll();
+        employeeList.forEach(employee -> employeeIds.add(employee.getId()));
+        return employeeIds;
+    }
 }

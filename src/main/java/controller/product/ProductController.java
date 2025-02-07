@@ -4,6 +4,8 @@ import controller.db.DBConnection;
 import controller.model.Product;
 import controller.model.ProductDetail;
 import controller.model.Supplier;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -59,6 +61,61 @@ public class ProductController implements ProductService {
 
     }
 
+    @Override
+    public Product search(Integer productCode) throws SQLException {
+        Product product = null;
+        String sql = "Select * from products where prod_code='" + productCode + "'";
+        Connection connection = DBConnection.getInstance().getConnection();
+        ResultSet resultSet = connection.createStatement().executeQuery(sql);
+        while (resultSet.next()) {
+            product = new Product(
+                    Integer.parseInt(resultSet.getString(1)),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getString(4),
+                    Double.parseDouble(resultSet.getString(5)),
+                    Integer.parseInt(resultSet.getString(6)),
+                    Integer.parseInt(resultSet.getString(7))
+            );
+        }
+        return product;
+    }
+
+    @Override
+    public boolean update(Product product) throws SQLException {
+        String sql = "Update products set prod_descr=?,category=?,size=?,unit_price=?,qty_in_stock=? where prod_code='" + product.getCode() + "'";
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setObject(1, product.getDescription());
+        preparedStatement.setObject(2, product.getCategory());
+        preparedStatement.setObject(3, product.getSize());
+        preparedStatement.setObject(4, product.getUnitPrice());
+        preparedStatement.setObject(5, product.getQuantityInStock());
+        return preparedStatement.executeUpdate() > 0;
+    }
+
+    @Override
+    public boolean delete(Integer code) throws SQLException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        String sql = "Delete from products where prod_code='"+code+"'";
+
+        try{
+            connection.setAutoCommit(false);
+            boolean isProductDetailDeleted = new ProductDetailController().delete(code);
+            if(isProductDetailDeleted){
+                boolean isProductDeleted = connection.createStatement().executeUpdate(sql) > 0;
+                if(isProductDeleted){
+                    connection.commit();
+                    return true;
+                }
+            }
+        }finally {
+            connection.setAutoCommit(true);
+        }
+        connection.rollback();
+        return false;
+    }
+
     private Product getLast() throws SQLException {
         Product product = null;
         String sql = "select * from products group by prod_code order by prod_code desc limit 1";
@@ -76,4 +133,10 @@ public class ProductController implements ProductService {
         return product;
     }
 
+    public ObservableList<Integer> getProductIds() throws SQLException {
+        ObservableList<Integer> productIds = FXCollections.observableArrayList();
+        List<Product> productList = getAll();
+        productList.forEach(product -> productIds.add(product.getCode()));
+        return productIds;
+    }
 }

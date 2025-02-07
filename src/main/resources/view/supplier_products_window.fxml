@@ -16,13 +16,15 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TableView fx:id="tblSupplierProducts" layoutX="35.0" layoutY="103.0" prefHeight="200.0" prefWidth="524.0">
+      <TableView fx:id="tblSupplierProducts" layoutX="15.0" layoutY="100.0" prefHeight="200.0" prefWidth="569.0">
         <columns>
-          <TableColumn fx:id="colSupplierId" prefWidth="99.33331298828125" text="Supplier id" />
-          <TableColumn fx:id="colSupplierName" prefWidth="109.33334350585938" text="Supplier name" />
-            <TableColumn fx:id="colProductName" prefWidth="92.66668701171875" text="Product name" />
-            <TableColumn fx:id="colUnitPrice" prefWidth="112.00006103515625" text="Unit Price" />
-            <TableColumn fx:id="colQty" prefWidth="112.00006103515625" text="Quantity" />
+          <TableColumn fx:id="colSupplierId" prefWidth="75.99996948242188" text="Supplier id" />
+            <TableColumn fx:id="colProductCode" prefWidth="83.99996948242188" text="Product code" />
+            <TableColumn fx:id="colProductDecription" prefWidth="122.0" text="Product name" />
+            <TableColumn fx:id="colCategory" prefWidth="63.33331298828125" text="Category" />
+            <TableColumn fx:id="colSize" prefWidth="65.33331298828125" text="Size" />
+            <TableColumn fx:id="colUnitPrice" prefWidth="84.0" text="Unit Price" />
+            <TableColumn fx:id="colQty" prefWidth="76.66668701171875" text="Quantity" />
         </columns>
       </TableView>
       <Button fx:id="btnReload" layoutX="272.0" layoutY="325.0" mnemonicParsing="false" onAction="#btnReloadOnAction" style="-fx-background-color: #061E3A;" text="Reload" textFill="WHITE">

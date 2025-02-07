@@ -62,5 +62,6 @@
       <JFXTextField fx:id="txtProductDescription" disable="true" layoutX="229.0" layoutY="162.0" promptText="product description" />
       <JFXTextField fx:id="txtUnitPrice" disable="true" layoutX="425.0" layoutY="162.0" promptText="unit price" />
       <JFXTextField fx:id="txtQuantityPurchased" layoutX="229.0" layoutY="203.0" promptText="quantity required" />
+      <JFXTextField fx:id="txtQuantityInStock" disable="true" layoutX="40.0" layoutY="203.0" promptText="quantity in stock" />
    </children>
 </AnchorPane>

@@ -6,7 +6,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Supplier {
+public class Supplier{
     private Integer id;
     private String name;
     private String company;

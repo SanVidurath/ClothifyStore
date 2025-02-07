@@ -51,6 +51,17 @@ public class SupplierController implements SupplierService{
         return supplier;
     }
 
+    public Supplier search(Integer id) throws SQLException {
+        Supplier supplier = null;
+        String sql = "Select * from suppliers where id='" + id + "'";
+        Connection connection = DBConnection.getInstance().getConnection();
+        ResultSet resultSet = connection.createStatement().executeQuery(sql);
+        while (resultSet.next()) {
+            supplier = new Supplier(Integer.parseInt(resultSet.getString(1)), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5));
+        }
+        return supplier;
+    }
+
     @Override
     public boolean update(Supplier supplier) throws SQLException {
         String sql = "Update suppliers set sup_name=?,company=?,email=?,phone_no=? where email='" + supplier.getEmail() + "'";
