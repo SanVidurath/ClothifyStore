@@ -2,6 +2,7 @@ package controller.product;
 
 import db.DBConnection;
 import model.OrderDetail;
+import model.OrderReturn;
 import model.Product;
 import model.ProductDetail;
 import javafx.collections.FXCollections;
@@ -156,6 +157,15 @@ public class ProductController implements ProductService {
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setObject(1,orderDetail.getQuantityPurchased());
         preparedStatement.setObject(2,orderDetail.getProductCode());
+        return preparedStatement.executeUpdate()>0;
+    }
+
+    public boolean updateStock(OrderReturn orderReturn) throws SQLException {
+        String sql = "Update products set qty_in_stock=qty_in_stock+? where prod_code=?";
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setObject(1,orderReturn.getQuantityReturned());
+        preparedStatement.setObject(2,orderReturn.getProductCode());
         return preparedStatement.executeUpdate()>0;
     }
 }

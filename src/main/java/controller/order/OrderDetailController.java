@@ -1,12 +1,14 @@
 package controller.order;
 
 import db.DBConnection;
+import model.Order;
 import model.OrderDetail;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDetailController {
@@ -46,4 +48,23 @@ public class OrderDetailController {
         }
         return orderDetail;
     }
+
+    public List<OrderDetail> getAll() throws SQLException {
+        List<OrderDetail> orderDetailList = new ArrayList<>();
+        String sql = "Select * from orderdetail";
+        Connection connection = DBConnection.getInstance().getConnection();
+        ResultSet resultSet = connection.createStatement().executeQuery(sql);
+        while(resultSet.next()){
+            OrderDetail orderDetail = new OrderDetail(
+                    Integer.parseInt(resultSet.getString(1)),
+                    Integer.parseInt(resultSet.getString(2)),
+                    Double.parseDouble(resultSet.getString(3)),
+                    Integer.parseInt(resultSet.getString(4))
+            );
+            orderDetailList.add(orderDetail);
+        }
+        return orderDetailList;
+    }
+
+
 }

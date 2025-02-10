@@ -76,22 +76,6 @@ public class UserDashboardWindowController {
         ancPaneLoadContainer.getChildren().add(load);
     }
 
-    @FXML
-    void btnOrderReturnsFormOnAction(ActionEvent event){
-        URL resource = this.getClass().getResource("/view/order_returns_form.fxml");
-
-        assert resource!=null;
-
-        Parent load = null;
-        try {
-            load = FXMLLoader.load(resource);
-        } catch (IOException e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
-        }
-
-        ancPaneLoadContainer.getChildren().clear();
-        ancPaneLoadContainer.getChildren().add(load);
-    }
 
     @FXML
     void btnSupplierFormOnAction(ActionEvent event){

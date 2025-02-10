@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderController {
+public class OrderController implements OrderService{
     private final List<OrderDetail> orderDetailList = new ArrayList<>();
     public boolean place(Order order) throws SQLException {
         String sql = "Insert into orders(order_date,emp_id,emp_name,cust_id,total,payment_type) values (?,?,?,?,?,?)";
@@ -89,6 +89,7 @@ public class OrderController {
         }
         return orderList;
     }
+
     public List<Integer> getIds() throws SQLException {
         List<Order> orderList = getAll();
         List<Integer> orderIds = new ArrayList<>();
