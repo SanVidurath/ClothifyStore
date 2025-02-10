@@ -18,10 +18,9 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cmbOrderId" layoutX="38.0" layoutY="96.0" onAction="#cmbShowOrderIdOnAction" prefWidth="150.0" promptText="order id" />
-      <ComboBox fx:id="cmbProductCode" layoutX="239.0" layoutY="96.0" onAction="#cmbShowProductCodeOnAction" prefWidth="150.0" promptText="product code" />
-      <JFXTextField fx:id="txtQuantity" disable="true" layoutX="433.0" layoutY="96.0" promptText="quantity" />
-      <JFXTextField fx:id="txtOrderDate" disable="true" layoutX="247.0" layoutY="154.0" promptText="order date" />
+      <ComboBox fx:id="cmbOrderId" layoutX="38.0" layoutY="99.0" onAction="#cmbShowOrderIdOnAction" prefWidth="150.0" promptText="order id" />
+      <ComboBox fx:id="cmbProductCode" layoutX="239.0" layoutY="99.0" onAction="#cmbShowProductCodeOnAction" prefWidth="150.0" promptText="product code" />
+      <JFXTextField fx:id="txtOrderDate" disable="true" layoutX="425.0" layoutY="99.0" promptText="order date" />
       <TableView fx:id="tblOrderReturns" layoutX="48.0" layoutY="200.0" prefHeight="149.0" prefWidth="504.0">
         <columns>
           <TableColumn fx:id="colOrderId" prefWidth="159.33328247070312" text="Order id" />
@@ -30,6 +29,11 @@
         </columns>
       </TableView>
       <Button fx:id="btnReturn" layoutX="465.0" layoutY="360.0" mnemonicParsing="false" onAction="#btnReturnOnAction" style="-fx-background-color: #061E3A;" text="Return" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnReload" layoutX="425.0" layoutY="151.0" mnemonicParsing="false" onAction="#btnReloadOnAction" style="-fx-background-color: #061E3A;" text="Reload" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

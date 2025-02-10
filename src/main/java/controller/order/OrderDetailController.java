@@ -5,6 +5,7 @@ import model.OrderDetail;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -28,5 +29,21 @@ public class OrderDetailController {
         preparedStatement.setObject(3, orderDetail.getUnitPrice());
         preparedStatement.setObject(4, orderDetail.getQuantityPurchased());
         return preparedStatement.executeUpdate() > 0;
+    }
+
+    public OrderDetail getOrderDetail(Object orderId, Object productCode) throws SQLException {
+        OrderDetail orderDetail = null;
+        String sql = "Select * from orderdetail where order_id='"+orderId+"' and prod_code='"+productCode+"'";
+        Connection connection = DBConnection.getInstance().getConnection();
+        ResultSet resultSet = connection.createStatement().executeQuery(sql);
+        while (resultSet.next()){
+            orderDetail = new OrderDetail(
+                    Integer.parseInt(resultSet.getString(1)),
+                    Integer.parseInt(resultSet.getString(2)),
+                    Double.parseDouble(resultSet.getString(3)),
+                    Integer.parseInt(resultSet.getString(4))
+            );
+        }
+        return orderDetail;
     }
 }

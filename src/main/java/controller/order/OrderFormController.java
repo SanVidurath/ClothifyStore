@@ -3,6 +3,9 @@ package controller.order;
 import com.jfoenix.controls.JFXTextField;
 import controller.customer.CustomerController;
 import controller.employee.EmployeeController;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import model.*;
 import model.cartTM.CartTM;
 import controller.product.ProductController;
@@ -18,21 +21,22 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class OrderFormController implements Initializable {
 
+    public ComboBox cmbCustomerIds;
+    public Button btnAddNewCustomer;
+    @FXML
+    private Label lblNetTotalHeading;
 
-    public Label lblNetTotalHeading;
     @FXML
     private Button btnAddToCart;
 
@@ -75,14 +79,6 @@ public class OrderFormController implements Initializable {
     @FXML
     private TableView tblOrders;
 
-    @FXML
-    private JFXTextField txtCustomerEmail;
-
-    @FXML
-    private JFXTextField txtCustomerName;
-
-    @FXML
-    private JFXTextField txtCustomerPhoneNo;
 
     @FXML
     private JFXTextField txtQuantityInStock;
@@ -100,8 +96,7 @@ public class OrderFormController implements Initializable {
     private JFXTextField txtUnitPrice;
     ObservableList<CartTM> cartDataList = FXCollections.observableArrayList();
 
-    private static final Pattern VALID_EMAIL_ADDRESS_REGEX =
-            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
 
 
     @FXML
@@ -119,16 +114,11 @@ public class OrderFormController implements Initializable {
     }
 
     private void loadData(){
-        String customerNameText = txtCustomerName.getText();
-        String customerEmailText = txtCustomerEmail.getText();
-        String customerPhoneNoText = txtCustomerPhoneNo.getText();
         String descriptionText = txtProductDescription.getText();
 
 
-        if(customerNameText.isEmpty()||customerEmailText.isEmpty()||customerPhoneNoText.isEmpty()||cmbEmployeeIds.getSelectionModel().isEmpty()||cmbPaymentType.getSelectionModel().isEmpty()||cmbProductCode.getSelectionModel().isEmpty()||txtQuantityPurchased.getText().isEmpty()){
+        if(cmbCustomerIds.getSelectionModel().isEmpty()||cmbEmployeeIds.getSelectionModel().isEmpty()||cmbPaymentType.getSelectionModel().isEmpty()||cmbProductCode.getSelectionModel().isEmpty()||txtQuantityPurchased.getText().isEmpty()){
             new Alert(Alert.AlertType.ERROR,"all fields must be filled").show();
-        }else if (!validateEmail(customerEmailText)) {
-            new Alert(Alert.AlertType.ERROR, "not a valid email address").show();
         }else{
             try{
                 Integer productCode = Integer.parseInt(String.valueOf(cmbProductCode.getValue()));
@@ -173,10 +163,7 @@ public class OrderFormController implements Initializable {
         }
     }
 
-    private boolean validateEmail(String emailStr) {
-        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
-        return matcher.matches();
-    }
+
 
     private CartTM checkItem(CartTM cartTMItem) {
         for (CartTM cartData : cartDataList) {
@@ -190,8 +177,6 @@ public class OrderFormController implements Initializable {
     @FXML
     void btnPlaceOrderOnAction(ActionEvent event) {
 
-        boolean isAddedCustomer = placeCustomer();
-        if(isAddedCustomer){
             String dateText = lblDate.getText();
             Integer employeeId = Integer.parseInt(String.valueOf(cmbEmployeeIds.getValue()));
             String employeeNameText = txtEmployeeName.getText();
@@ -199,7 +184,7 @@ public class OrderFormController implements Initializable {
             String paymentType = String.valueOf(cmbPaymentType.getValue());
 
             try {
-                Customer customer = new CustomerController().search(txtCustomerEmail.getText());
+                Customer customer = new CustomerController().search(Integer.parseInt(String.valueOf(cmbCustomerIds.getValue())));
 
                 ArrayList<OrderDetail> orderDetailArrayList = new ArrayList<>();
 
@@ -210,6 +195,7 @@ public class OrderFormController implements Initializable {
 
                 boolean isPlacedOrder = new OrderController().place(order);
                 if(isPlacedOrder){
+                    txtQuantityPurchased.setText("");
                     new Alert(Alert.AlertType.INFORMATION,"order placed successfully").show();
                 }else{
                     new Alert(Alert.AlertType.ERROR,"order not placed").show();
@@ -218,21 +204,8 @@ public class OrderFormController implements Initializable {
                 new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
             }
 
-        }
-
-
     }
 
-    private boolean placeCustomer(){
-        Customer customer = new Customer(1, txtCustomerName.getText(), txtCustomerEmail.getText(), txtCustomerPhoneNo.getText());
-        boolean isAddedCustomer = false;
-        try {
-            isAddedCustomer = new CustomerController().add(customer);
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
-        }
-        return isAddedCustomer;
-    }
 
     @FXML
     void cmbShowEmployeeIdsOnAction(ActionEvent event) {
@@ -252,6 +225,7 @@ public class OrderFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setTimeAndDate();
+        loadCustomerIds();
         loadEmployeeIds();
         loadProductCodes();
         loadPaymentType();
@@ -266,6 +240,12 @@ public class OrderFormController implements Initializable {
         cmbEmployeeIds.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
             if(newValue!=null){
                 searchEmployeeData(newValue.toString());
+            }
+        });
+
+        cmbCustomerIds.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
+            if(newValue!=null){
+                searchCustomerData(newValue.toString());
             }
         });
     }
@@ -301,6 +281,13 @@ public class OrderFormController implements Initializable {
         }
     }
 
+    private void searchCustomerData(String customerId){
+        try {
+            new CustomerController().search(Integer.parseInt(customerId));
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
+    }
     private void loadEmployeeIds() {
         try {
             ObservableList<Integer> employeeIds = new EmployeeController().getIds();
@@ -316,6 +303,15 @@ public class OrderFormController implements Initializable {
             cmbProductCode.setItems(productIds);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
+    }
+
+    private void loadCustomerIds(){
+        try {
+            ObservableList<Integer> customerIds = new CustomerController().getCustomerIds();
+            cmbCustomerIds.setItems(customerIds);
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
     }
 
@@ -348,4 +344,9 @@ public class OrderFormController implements Initializable {
         String newSec = String.valueOf(sec).length() == 1 ? "0" + sec : String.valueOf(sec);
         return newHour + ":" + newMin + ":" + newSec;
     }
+
+    public void cmbShowCustomerIdsOnAction(ActionEvent actionEvent) {
+    }
+
+
 }
