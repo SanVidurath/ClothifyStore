@@ -5,7 +5,7 @@ This is a Point of Sale (POS) system tailored for fashion shops, built using Jav
 
 ## Architecture & Design Patterns
 * **MVC architecture** - easy code maintenance
-* **Singleton design patter** - prevents redundant database connections
+* **Singleton design pattern** - prevents redundant database connections
 
 ## Features
 * **User-friendly user-interface** – JFoenix + JavaFX.
