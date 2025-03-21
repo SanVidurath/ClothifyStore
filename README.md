@@ -22,9 +22,6 @@ This is a Point of Sale (POS) system tailored for fashion shops, built using Jav
 * Lombok library
 * Jasypt library
 
-## Getting Started
-### Installation
-1. Clone the repository
 
 
 
