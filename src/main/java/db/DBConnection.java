@@ -12,9 +12,9 @@ public class DBConnection {
     public Connection connection;
 
     private DBConnection() throws SQLException {
-        String mysql = "jdbc:mysql://localhost:3306/clothesstore";
-        String user = "root";
-        String password = "1234";
+        String mysql = "jdbc:mysql://localhost:3306/databasename";
+        String user = "username";
+        String password = "password";
         connection = DriverManager.getConnection(mysql,user,password);
     }
 
