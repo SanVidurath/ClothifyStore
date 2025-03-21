@@ -12,5 +12,14 @@ This is a Point of Sale (POS) system tailored for fashion shops, built using Jav
 * **Lombok Integration** – Reduces boilerplate code.
 * **Data Encryption** – Jasypt for secure password management.
 
+## Technologies Used
+* Java 
+* JavaFX
+* Maven
+* MySQL
+* JFoenix library
+* Lombok library
+* Jasypt library
+
 
 
