@@ -8,10 +8,10 @@ This is a Point of Sale (POS) system tailored for fashion shops, built using Jav
 * **Singleton design pattern** - prevents redundant database connections
 
 ## Features
-* **User-friendly user-interface** – JFoenix + JavaFX.
-* **Secure Database Operations** – Native queries.
-* **Lombok Integration** – Reduces boilerplate code.
-* **Data Encryption** – Jasypt for secure password management.
+* **User-friendly user-interface** – JFoenix + JavaFX
+* **Secure Database Operations** – Native queries
+* **Lombok Integration** – Reduces boilerplate code
+* **Data Encryption** – Jasypt for secure password management
 * **Handles JDBC Transactions**
 
 ## Technologies Used
