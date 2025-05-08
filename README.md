@@ -22,6 +22,7 @@ This is a Point of Sale (POS) system tailored for fashion shops, built using Jav
 * JFoenix library
 * Lombok library
 * Jasypt library
+* Test
 
 
 
